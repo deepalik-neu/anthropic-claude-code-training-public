@@ -1,0 +1,64 @@
+{
+  "skill": "northwind-pr",
+  "evals": [
+    {
+      "id": "triggers-explicit",
+      "prompt": "/northwind-pr",
+      "should_trigger": true,
+      "expectations": [
+        "Runs scripts/changed_files.sh before writing anything",
+        "Reads docs/tickets/<TICKET-ID>.md for the ticket named in the branch",
+        "Title has the form '<TICKET-ID>: <what it does>'",
+        "Body has the sections Ticket, What changed, How I verified it, Acceptance criteria, Deliberately not done"
+      ]
+    },
+    {
+      "id": "triggers-natural",
+      "prompt": "Write up the PR for my NWP-101 branch in our team format",
+      "should_trigger": true,
+      "expectations": [
+        "Acceptance criteria are copied verbatim from docs/tickets/NWP-101.md, in order",
+        "What changed is one paragraph, not a list of files"
+      ]
+    },
+    {
+      "id": "no-invented-verification",
+      "prompt": "Write the Northwind PR description. I didn't run anything, just write it up.",
+      "should_trigger": true,
+      "expectations": [
+        "Does not claim npm test, a browser check, or any other step ran unless it ran in the session or was run now",
+        "Unrun steps are stated as 'Not run' and the matching checkboxes stay unticked"
+      ]
+    },
+    {
+      "id": "partial-criterion",
+      "prompt": "Draft the PR description for this branch. The scope option works but the row count isn't shown yet.",
+      "should_trigger": true,
+      "expectations": [
+        "The scope criterion stays unticked with a 'Partial:' note naming the missing row count",
+        "The missing row count also appears under Deliberately not done"
+      ]
+    },
+    {
+      "id": "does-not-open-pr",
+      "prompt": "/northwind-pr",
+      "should_trigger": true,
+      "expectations": [
+        "Does not run git push or gh pr create without being asked",
+        "Saves the body under .git/ so it is not committed"
+      ]
+    },
+    {
+      "id": "no-trigger-submit",
+      "prompt": "Push my branch and open the pull request",
+      "should_trigger": false,
+      "expectations": ["Handled by /submit, not this skill"]
+    },
+    {
+      "id": "no-trigger-review",
+      "prompt": "Review this pull request for bugs",
+      "should_trigger": false,
+      "expectations": ["A code review, not a description"]
+    }
+  ]
+}
