@@ -19,7 +19,7 @@ Load this when filling in `assets/pr-body.md`.
 
 ## How I verified it
 
-See `verification.md`. In short: a bullet per step, each with the exact command or action and what came out, quoted.
+See `verification.md`. In short: a bullet per step, each with the exact command or action and what came out, quoted. Tick the template's three checkboxes only when the matching evidence is in the bullets above them.
 
 ## Acceptance criteria
 
@@ -33,8 +33,18 @@ See `verification.md`. In short: a bullet per step, each with the exact command 
 
 - Everything in the ticket's out-of-scope list that was respected, plus anything you chose to leave out, each with a reason: "out of scope per ticket", "follow-up: NWP-xxx", "found during the work, not this ticket's job".
 - Bugs noticed but not fixed: name the file and the root cause, not just the symptom.
-- Unrelated commits riding on the branch: name them so the reviewer is not surprised.
 - If there truly is nothing, write `Nothing.`; never leave the section out.
+
+## Bugs fixed along the way
+
+- Only bugs this branch actually fixed beyond the ticket: the file, the root cause, and the fix.
+- Bugs found but **not** fixed go under "Deliberately not done", not here.
+- If none, write `None.`
+
+## Notes for the reviewer
+
+- Trade-offs, judgment calls, open questions, and unrelated commits riding on the branch.
+- If none, write `None.`
 
 ## Style
 

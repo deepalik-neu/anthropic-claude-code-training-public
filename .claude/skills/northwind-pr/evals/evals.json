@@ -9,7 +9,11 @@
         "Runs scripts/changed_files.sh before writing anything",
         "Reads docs/tickets/<TICKET-ID>.md for the ticket named in the branch",
         "Title has the form '<TICKET-ID>: <what it does>'",
-        "Body has the sections Ticket, What changed, How I verified it, Acceptance criteria, Deliberately not done"
+        "Body has the sections Ticket, What changed, How I verified it, Acceptance criteria, Deliberately not done, Bugs fixed along the way, Notes for the reviewer",
+        "Does not run git push or gh pr create without being asked",
+        "Saves the body at the script's body path (inside the git dir, works in a worktree) so it is not committed",
+        "Prints the title on its own line, outside the body",
+        "Body keeps every heading of .github/pull_request_template.md plus Deliberately not done"
       ]
     },
     {
@@ -32,7 +36,7 @@
     },
     {
       "id": "partial-criterion",
-      "prompt": "Draft the PR description for this branch. The scope option works but the row count isn't shown yet.",
+      "prompt": "Draft the Northwind-format PR description for this branch. The scope option works but the row count isn't shown yet.",
       "should_trigger": true,
       "expectations": [
         "The scope criterion stays unticked with a 'Partial:' note naming the missing row count",
@@ -40,25 +44,36 @@
       ]
     },
     {
-      "id": "does-not-open-pr",
-      "prompt": "/northwind-pr",
+      "id": "from-subdirectory",
+      "prompt": "/northwind-pr (run while the working directory is build-battle/merchant-console)",
       "should_trigger": true,
       "expectations": [
-        "Does not run git push or gh pr create without being asked",
-        "Saves the body under .git/ so it is not committed"
+        "The script runs and finds docs/tickets/<TICKET-ID>.md even though the cwd is not the repo root"
       ]
     },
     {
       "id": "no-trigger-submit",
       "prompt": "Push my branch and open the pull request",
       "should_trigger": false,
-      "expectations": ["Handled by /submit, not this skill"]
+      "expectations": [
+        "Handled by /submit, not this skill"
+      ]
     },
     {
       "id": "no-trigger-review",
       "prompt": "Review this pull request for bugs",
       "should_trigger": false,
-      "expectations": ["A code review, not a description"]
+      "expectations": [
+        "A code review, not a description"
+      ]
+    },
+    {
+      "id": "no-trigger-generic-description",
+      "prompt": "Write the PR description for this branch",
+      "should_trigger": false,
+      "expectations": [
+        "Handled by /pr; northwind-pr fires only for the Northwind/team format or /northwind-pr"
+      ]
     }
   ]
 }

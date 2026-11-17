@@ -1,5 +1,3 @@
-<!-- Title: <TICKET-ID>: <what it does> -->
-
 ## Ticket
 
 Closes <TICKET-ID>
@@ -13,6 +11,10 @@ Closes <TICKET-ID>
 - `<command or action>`: <what it output, quoted>
 - Not run: <anything a reviewer would expect that did not happen>
 
+- [ ] `npm test` passes
+- [ ] New behavior is covered by a test
+- [ ] Checked it in the browser
+
 ## Acceptance criteria
 
 - [ ] <criterion copied verbatim from the ticket>
@@ -20,4 +22,12 @@ Closes <TICKET-ID>
 
 ## Deliberately not done
 
-- <item>: <reason: out of scope per ticket / follow-up NWP-xxx / found, not fixed (file and root cause)>
+- <item>: <reason: out of scope per ticket / follow-up NWP-xxx>
+
+## Bugs fixed along the way
+
+- <file>: <root cause, and how it was fixed>
+
+## Notes for the reviewer
+
+- <trade-offs, unrelated commits on the branch, open questions>
